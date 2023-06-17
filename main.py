@@ -36,11 +36,13 @@ def choose_parent(generation_list):
 
     top_gen_num = int(lmda * top_membership_percent)
     bottom_gen_num = lmda - top_gen_num
-    parent_list = [generation_list[i] for i in range(mu - top_gen_num, mu)]
-    for i in range(bottom_gen_num):
+    top_parent_list = [generation_list[i] for i in range(mu - top_gen_num, mu)]
+    bottom_parent_list = [generation_list[i] for i in range(0, bottom_gen_num)]
+    bottom_parent_list.extend(top_parent_list)
+    parent_list = bottom_parent_list
+    """for i in range(bottom_gen_num):
         random_index = random.randint(0, mu - top_gen_num - 1)
-        parent_list.append(generation_list[random_index])
-
+        parent_list.append(generation_list[random_index])"""
     return parent_list
 
 
@@ -88,10 +90,13 @@ def update_generation(parent_list, generation_list: list):
     generation_list.sort(key=lambda x: x.fitness)
     top_gen_num = int(mu * top_membership_percent)
     bottom_gen_num = mu - top_gen_num
-    new_generation = [generation_list[i] for i in range(len(generation_list) - top_gen_num, len(generation_list))]
-    for i in range(bottom_gen_num):
+    top_new_generation = [generation_list[i] for i in range(len(generation_list) - top_gen_num, len(generation_list))]
+    bottom_new_generation = [generation_list[i] for i in range(0, bottom_gen_num)]
+    bottom_new_generation.extend(top_new_generation)
+    new_generation = bottom_new_generation
+    """for i in range(bottom_gen_num):
         random_index = random.randint(0, len(generation_list) - top_gen_num - 1)
-        new_generation.insert(0, generation_list[random_index])
+        new_generation.insert(0, generation_list[random_index])"""
 
     return new_generation
 
