@@ -8,7 +8,7 @@ cn = CnfResolver("input.cnf")
 mu = 2 * cn.nv
 # number of selected parent
 lmda = int(math.sqrt(mu))
-mutation_percent = 0.05
+mutation_percent = 0.95
 top_membership_percent = 0.85
 max_iteration = 10 * cn.clauses_size
 max_answer = cn.clauses_size
